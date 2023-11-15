@@ -32,7 +32,7 @@ public class TNTListener implements AnnoyingListener {
     @EventHandler
     public void onEntitySpawn(@NotNull EntitySpawnEvent event) {
         final Entity entity = event.getEntity();
-        if (entity instanceof TNTPrimed) ((TNTPrimed) entity).setFuseTicks(plugin.config.getFuse());
+        if (entity instanceof TNTPrimed && plugin.config.tnt) ((TNTPrimed) entity).setFuseTicks(plugin.config.getFuse());
     }
 
     /**
@@ -40,6 +40,6 @@ public class TNTListener implements AnnoyingListener {
      */
     @EventHandler
     public void onExplosionPrime(@NotNull ExplosionPrimeEvent event) {
-        if (event.getEntity() instanceof TNTPrimed) event.setRadius(plugin.config.getPower());
+        if (event.getEntity() instanceof TNTPrimed && plugin.config.tnt) event.setRadius(plugin.config.getPower());
     }
 }
